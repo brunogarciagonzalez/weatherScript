@@ -53,7 +53,13 @@ const DayWeatherTile = props => {
             {weekdays[new Date(applicable_date).getDay()]}
           </div>
           <div className="meta">
-            <span className="date">{applicable_date}</span>
+            <span className="date">
+              {new Date(applicable_date)
+                .toDateString()
+                .split(" ")
+                .slice(1)
+                .join(" ")}
+            </span>
           </div>
           <div className="description">
             Current Temp: {celsiusConversion(the_temp)}
