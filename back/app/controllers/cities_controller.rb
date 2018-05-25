@@ -17,6 +17,8 @@ class CitiesController < ApplicationController
         if word.downcase == "dc" || word.downcase == "d.c." || word.downcase == "d.c"
           "DC"
         elsif word.downcase == "bc" || word.downcase == "b.c." || word.downcase == "b.c"
+          "BC"
+        else
           word
         end
       end
