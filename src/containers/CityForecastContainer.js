@@ -1,6 +1,5 @@
 import React from "react";
 import DayWeatherTile from "../components/DayWeatherTile";
-import { Card } from "semantic-ui-react";
 
 class CityForecastContainer extends React.Component {
   constructor() {
@@ -10,12 +9,15 @@ class CityForecastContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.weatherData);
     return (
-      <div className="ui five column grid">
-        {this.props.weatherData.map(day => {
-          return <DayWeatherTile key={day.id} day={day} />;
-        })}
+      <div>
+        <div className="ui block header">{this.props.randomCityName}</div>
+        <div className="ui five column grid">
+          {this.props.weatherData.map(day => {
+            return <DayWeatherTile key={day.id} day={day} />;
+          })}
+        </div>
       </div>
     );
   }

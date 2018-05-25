@@ -102,26 +102,48 @@ class LoginContainer extends React.Component {
     //this state should hold tem woeIds to fetch for main page
   }
 
-  // randomWoeId = () => {
-  //   let num = Math.floor(Math.random() * this.state.randomCities.length);
-  //   return this.state.randomCities[num];
-  // };
-  //
   componentDidMount() {
-    fetch(`http://localhost:3000/weather`)
+    let num = Math.floor(Math.random() * this.state.randomCities.length);
+    let city = this.state.randomCities[num];
+    fetch(`http://localhost:3000/woe-id`, {
+      method: "POST",
+      body: JSON.stringify({
+        city: city
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
       .then(res => res.json())
       .then(json =>
         this.setState({
+          randomCityName: json.title,
           weatherData: json.consolidated_weather.slice(0, 5)
         })
       );
   }
 
+  // getForecast = json => {
+  //   fetch(`http://localhost:3000/weather`)
+  //     .then(res => res.json())
+  //     .then(json =>
+  //       this.setState({
+  //         randomCityName: json.title,
+  //         weatherData: json.consolidated_weather.slice(0, 5)
+  //       })
+  //     );
+  // };
+
   render() {
+    console.log(this.state.weatherData);
     return (
       <div>
         <LoginForm />
-        <CityForecastContainer weatherData={this.state.weatherData} />
+        <CityForecastContainer
+          randomCityName={this.state.randomCityName}
+          weatherData={this.state.weatherData}
+        />
       </div>
     );
   }
