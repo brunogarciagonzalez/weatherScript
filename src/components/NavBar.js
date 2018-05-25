@@ -5,7 +5,12 @@ import { NavLink } from "react-router-dom";
 const NavBar = props => {
   return (
     <div className="ui huge menu">
-      <div className="item" name="login">
+      <div
+        className="item"
+        name="login"
+        id="login-nav"
+        onClick={props.createUser}
+      >
         <NavLink to="/login">Login</NavLink>
       </div>
       {props.loggedIn ? (

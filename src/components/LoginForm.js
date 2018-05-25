@@ -1,28 +1,137 @@
 import React from "react";
-import { Card, Segment, Button, Form } from "semantic-ui-react";
 
 class LoginForm extends React.Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      firstName: "",
+      lastName: "",
+      username: "",
+      password: ""
+    };
   }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  saveUser = () => {
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      body: JSON.stringify({
+        first_name: this.state.firstName,
+        last_name: this.state.lastName,
+        username: this.state.username,
+        password: this.state.password
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(json => console.log(json));
+  };
+
+  loginUser = () => {
+    fetch("http://localhost:3000/login-user", {
+      method: "POST",
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(json => this.props.handleLogIn(json));
+  };
+
   render() {
-    return (
+    // console.log(this.props);
+    return this.props.newUser ? (
       <div className="ui two column centered grid">
         <div className="ui raised segment">
           <div className="ui large form">
             <div className="two fields">
               <div className="field">
-                <input placeholder="Username" type="text" />
+                <input
+                  placeholder="First Name"
+                  type="text"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={this.handleChange}
+                />
               </div>
               <div className="field">
-                <input placeholder="Password" type="password" />
+                <input
+                  placeholder="Last Name"
+                  type="text"
+                  name="lastName"
+                  value={this.state.lastName}
+                  onChange={this.handleChange}
+                />
               </div>
             </div>
-            <div className="ui submit button">Submit</div>
+            <div className="field">
+              <input
+                placeholder="Username"
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="field">
+              <input
+                placeholder="Password"
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="ui submit button" onClick={this.saveUser}>
+              Sign Up!
+            </div>
           </div>
+          <a onClick={this.props.createUser}>Log In</a>
+        </div>
+      </div>
+    ) : (
+      <div className="ui two column centered grid">
+        <div className="ui raised segment">
+          <div className="ui large form">
+            <div className="two fields">
+              <div className="field">
+                <input
+                  placeholder="Username"
+                  value={this.state.username}
+                  name="username"
+                  onChange={this.handleChange}
+                  type="text"
+                />
+              </div>
+              <div className="field">
+                <input
+                  placeholder="Password"
+                  value={this.state.password}
+                  name="password"
+                  onChange={this.handleChange}
+                  type="password"
+                />
+              </div>
+            </div>
+            <div className="ui submit button" onClick={this.loginUser}>
+              Sign In
+            </div>
+          </div>
+          <a onClick={this.props.createUser}>New Account</a>
         </div>
       </div>
     );
