@@ -12,22 +12,42 @@ class App extends Component {
     super();
 
     this.state = {
-      loggedIn: true
+      loggedIn: false,
+      newUser: false,
+      currentUser: {}
     };
   }
 
-  handleLogIn = () => {
+  createUser = () => {
     this.setState({
-      loggedIn: !this.state.loggedIn
+      newUser: !this.state.newUser
+    });
+  };
+
+  handleLogIn = user => {
+    this.setState({
+      loggedIn: !this.state.loggedIn,
+      currentUser: user
     });
   };
 
   render() {
+    // console.log(this.state.currentUser);
     return (
       <BrowserRouter>
         <div>
-          <NavBar loggedIn={this.state.loggedIn} />
-          <Route exact path="/login" component={LoginContainer} />
+          <NavBar createUser={this.createUser} loggedIn={this.state.loggedIn} />
+          <Route
+            exact
+            path="/login"
+            render={() => (
+              <LoginContainer
+                newUser={this.state.newUser}
+                createUser={this.createUser}
+                handleLogIn={this.handleLogIn}
+              />
+            )}
+          />
         </div>
       </BrowserRouter>
     );

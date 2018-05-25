@@ -142,10 +142,14 @@ class LoginContainer extends React.Component {
   // };
 
   render() {
-    console.log(this.state.weatherData);
+    console.log(this.props);
     return (
       <div>
-        <LoginForm />
+        <LoginForm
+          newUser={this.props.newUser}
+          createUser={this.props.createUser}
+          handleLogIn={this.props.handleLogIn}
+        />
         <CityForecastContainer
           randomCityName={this.state.randomCityName}
           weatherData={this.state.weatherData}
