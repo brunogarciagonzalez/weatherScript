@@ -95,7 +95,13 @@ class LoginContainer extends React.Component {
     super();
 
     this.state = {
-      randomCities: [2487956, 2459115, 44418, 1105779, 2514815],
+      randomCities: [
+        "San Francisco",
+        "New York",
+        "London",
+        "Sydney",
+        "Washington DC"
+      ],
       weatherData: []
     };
 
@@ -104,11 +110,11 @@ class LoginContainer extends React.Component {
 
   componentDidMount() {
     let num = Math.floor(Math.random() * this.state.randomCities.length);
-    let city = this.state.randomCities[num];
+    let cityName = this.state.randomCities[num];
     fetch(`http://localhost:3000/woe-id`, {
       method: "POST",
       body: JSON.stringify({
-        city: city
+        city: cityName
       }),
       headers: {
         Accept: "application/json",
