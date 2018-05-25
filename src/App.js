@@ -1,21 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import LoginContainer from "./containers/LoginContainer";
+// import DashboardContainer from "./components/DashboardContainer";
+// import SearchResultsContainer from "./components/SearchResultsContainer";
+// import CityPageContainer from "./components/CityPageContainer";
+import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      loggedIn: true
+    };
+  }
+
+  handleLogIn = () => {
+    this.setState({
+      loggedIn: !this.state.loggedIn
+    });
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <div>
+          <NavBar loggedIn={this.state.loggedIn} />
+          <Route exact path="/login" component={LoginContainer} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
 
+// <Route exact path="/dashboard" component={DashboardContainer} />
+// <Route
+//   exact
+//   path="/search-results"
+//   component={SearchResultsContainer}
+// />
+// <Route exact path="/city" component={CityPageContainer} />
 export default App;
