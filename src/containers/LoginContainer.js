@@ -8,11 +8,11 @@ class LoginContainer extends React.Component {
 
     this.state = {
       randomCities: [
-        "san francisco",
-        "new york",
-        "london",
-        "sydney",
-        "washington dc"
+        "San Francisco",
+        "New York",
+        "London",
+        "Sydney",
+        "Washington DC"
       ],
       weatherData: []
     };
