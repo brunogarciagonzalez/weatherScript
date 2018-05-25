@@ -34,13 +34,19 @@ const DayWeatherTile = props => {
     return parseInt(num * 1.8 + 32, 10);
   };
 
-  const { applicable_date, min_temp, max_temp, the_temp } = props.day;
+  const {
+    applicable_date,
+    min_temp,
+    max_temp,
+    the_temp,
+    weather_state_abbr
+  } = props.day;
 
   return (
     <div className="column">
       <div className="ui fluid card">
         <div className="image">
-          <img src="/images/avatar/large/daniel.jpg" />
+          <img src={require(`../weather_images/${weather_state_abbr}.svg`)} />
         </div>
         <div className="content">
           <div className="header">
