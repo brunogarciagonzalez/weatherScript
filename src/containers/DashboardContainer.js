@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBar from "../components/SearchBar";
+import MyCitiesContainer from "./MyCitiesContainer";
 import SearchResultsContainer from "../containers/SearchResultsContainer";
 
 class DashboardContainer extends React.Component {
@@ -36,10 +37,10 @@ class DashboardContainer extends React.Component {
       <div>
         <SearchBar handleResults={this.handleResults} />
         <SearchResultsContainer results={this.state.searchResults} />
+        <MyCitiesContainer currentUser={this.props.currentUser} />
       </div>
     );
   }
 }
-// <MyCitiesContainer />
 
 export default DashboardContainer;

@@ -42,6 +42,7 @@ const DayWeatherTile = props => {
     weather_state_name
   } = props.day;
 
+  // console.log(props.singleDay);
   return (
     <div className="column">
       <div className="ui fluid card">
