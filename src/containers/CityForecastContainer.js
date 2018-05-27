@@ -9,13 +9,12 @@ class CityForecastContainer extends React.Component {
   }
 
   render() {
-    // console.log(this.props.weatherData);
     return (
       <div>
         <div className="ui block header">{this.props.randomCityName}</div>
         <div className="ui five column grid">
-          {this.props.weatherData.map(day => {
-            return <DayWeatherTile key={day.id} day={day} />;
+          {this.props.weatherData.map((day, index) => {
+            return <DayWeatherTile key={day.id} day={day} index={index} />;
           })}
         </div>
       </div>

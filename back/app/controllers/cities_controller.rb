@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
 
   def getWoeId
+    puts params
     @city_name = params[:city]
 
     # ================== _ 1 _ ==================
@@ -38,8 +39,11 @@ class CitiesController < ApplicationController
 
     if city_find_result
       # find woeid from db and send to self.weatherData
+        # with a second argument of: false,
+        # since in our db already has parent
       self.weatherData(
-        city_find_result["woe_id"]
+        city_find_result["woe_id"],
+        false
       )
     else
       # construct search query
@@ -49,7 +53,6 @@ class CitiesController < ApplicationController
 
       parsed_city_name = final_city_name.gsub(' ', '%20')
       woe_data = RestClient.get("https://www.metaweather.com/api/location/search/?query=#{parsed_city_name}")
-      puts woe_data
       json = JSON.parse(woe_data) # returns an array, even if of one object
 
 
@@ -61,12 +64,14 @@ class CitiesController < ApplicationController
         # what here?
       elsif json.length == 1
         # persist in db
-        # send to self.weatherData
+        # send to self.weatherData, with second argument of: true,
+          # so that parent is added to db
         the_city = json[0]
         City.create(name: the_city['title'], woe_id: the_city['woeid'])
-        self.weatherData(the_city['woeid'])
+        self.weatherData(the_city['woeid'], true)
       else
         # need searchResults functionality
+        render json: json, status: 200
       end
     end
 
@@ -77,10 +82,23 @@ class CitiesController < ApplicationController
     self.weatherData(@woe)
   end
 
-  def weatherData(woeId)
+  def weatherData(woeId, addParentBoolean)
+    # given weoID, get 5-day forecast
     all_data = RestClient.get("https://www.metaweather.com/api/location/#{woeId}/")
     json = JSON.parse(all_data)
+
+    # given addParentBoolean, update db or not
+    if addParentBoolean
+      # update our db with city's parent before rendering
+      json["parent"]["title"]
+
+      City.find_by(woe_id: woeId).update(parent: json["parent"]["title"])
+
+      render json: json, status: 200
+    else
+      # render results to front-end
     render json: json, status: 200
+    end
   end
 
 end

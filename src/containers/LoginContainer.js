@@ -7,6 +7,7 @@ class LoginContainer extends React.Component {
     super();
 
     this.state = {
+      randomCityName: null,
       randomCities: [
         "San Francisco",
         "New York",
@@ -36,7 +37,7 @@ class LoginContainer extends React.Component {
       .then(res => res.json())
       .then(json =>
         this.setState({
-          randomCityName: json.title,
+          randomCityName: `${json.title}, ${json.parent.title}`,
           weatherData: json.consolidated_weather.slice(0, 5)
         })
       );
@@ -54,7 +55,6 @@ class LoginContainer extends React.Component {
   // };
 
   render() {
-    // console.log(this.props);
     return (
       <div>
         <LoginForm

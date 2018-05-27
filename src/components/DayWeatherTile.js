@@ -38,7 +38,8 @@ const DayWeatherTile = props => {
     min_temp,
     max_temp,
     the_temp,
-    weather_state_abbr
+    weather_state_abbr,
+    weather_state_name
   } = props.day;
 
   // console.log(props.singleDay);
@@ -46,7 +47,10 @@ const DayWeatherTile = props => {
     <div className="column">
       <div className="ui fluid card">
         <div className="image">
-          <img src={require(`../weather_images/${weather_state_abbr}.svg`)} />
+          <img
+            alt={`${weather_state_name} weather`}
+            src={require(`../weather_images/${weather_state_abbr}.svg`)}
+          />
         </div>
         <div className="content">
           <div className="header">
@@ -62,8 +66,12 @@ const DayWeatherTile = props => {
             </span>
           </div>
           <div className="description">
-            Current Temp: {celsiusConversion(the_temp)}
-            <br />
+            {props.index === 0 ? (
+              <span>
+                Current Temp: {celsiusConversion(the_temp)}
+                <br />
+              </span>
+            ) : null}
             Hi / Low:{" "}
             {`${celsiusConversion(max_temp)} / ${celsiusConversion(min_temp)}`}
           </div>
