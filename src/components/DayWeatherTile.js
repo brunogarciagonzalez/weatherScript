@@ -50,9 +50,7 @@ const DayWeatherTile = props => {
         </div>
         <div className="content">
           <div className="header">
-            {props.cityName
-              ? props.cityName
-              : weekdays[new Date(applicable_date).getDay()]}
+            {weekdays[new Date(applicable_date).getDay()]}
           </div>
           <div className="meta">
             <span className="date">

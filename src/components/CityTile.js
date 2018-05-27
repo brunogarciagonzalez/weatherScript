@@ -32,15 +32,49 @@ class CityTile extends React.Component {
       });
   }
 
+  celsiusConversion = num => {
+    return parseInt(num * 1.8 + 32, 10);
+  };
+
   render() {
-    // console.log(this.props);
+    debugger;
     return (
       <div>
         {this.state.currentDay ? (
-          <DayWeatherTile
-            cityName={this.state.cityName}
-            day={this.state.currentDay}
-          />
+          <div className="column">
+            <div className="ui fluid link card">
+              <div className="image">
+                <img
+                  src={require(`../weather_images/${
+                    this.state.currentDay.weather_state_abbr
+                  }.svg`)}
+                />
+              </div>
+              <div className="content">
+                <div className="header">{this.state.cityName}</div>
+                <div className="meta">
+                  <span className="date">
+                    {new Date(this.state.currentDay.applicable_date)
+                      .toDateString()
+                      .split(" ")
+                      .slice(1)
+                      .join(" ")}
+                  </span>
+                </div>
+                <div className="description">
+                  Current Temp:{" "}
+                  {this.celsiusConversion(this.state.currentDay.the_temp)}
+                  <br />
+                  Hi / Low:{" "}
+                  {`${this.celsiusConversion(
+                    this.state.currentDay.max_temp
+                  )} / ${this.celsiusConversion(
+                    this.state.currentDay.min_temp
+                  )}`}
+                </div>
+              </div>
+            </div>
+          </div>
         ) : null}
       </div>
     );
