@@ -41,6 +41,8 @@ const DayWeatherTile = props => {
     weather_state_abbr
   } = props.day;
 
+  console.log(props);
+
   return (
     <div className="column">
       <div className="ui fluid card">
@@ -61,8 +63,12 @@ const DayWeatherTile = props => {
             </span>
           </div>
           <div className="description">
-            Current Temp: {celsiusConversion(the_temp)}
-            <br />
+            {props.index === 0 ? (
+              <span>
+                Current Temp: {celsiusConversion(the_temp)}
+                <br />
+              </span>
+            ) : null}
             Hi / Low:{" "}
             {`${celsiusConversion(max_temp)} / ${celsiusConversion(min_temp)}`}
           </div>
