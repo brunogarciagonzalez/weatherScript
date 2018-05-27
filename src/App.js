@@ -32,7 +32,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.currentUser);
+    // console.log(this.state.currentUser);
     return (
       <BrowserRouter>
         <div>
@@ -50,7 +50,13 @@ class App extends Component {
               )}
             />
           )}
-          <Route exact path="/dashboard" component={DashboardContainer} />
+          <Route
+            exact
+            path="/dashboard"
+            render={() => (
+              <DashboardContainer currentUser={this.state.currentUser} />
+            )}
+          />
         </div>
       </BrowserRouter>
     );

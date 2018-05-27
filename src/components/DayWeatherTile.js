@@ -41,6 +41,7 @@ const DayWeatherTile = props => {
     weather_state_abbr
   } = props.day;
 
+  // console.log(props.singleDay);
   return (
     <div className="column">
       <div className="ui fluid card">
@@ -49,7 +50,9 @@ const DayWeatherTile = props => {
         </div>
         <div className="content">
           <div className="header">
-            {weekdays[new Date(applicable_date).getDay()]}
+            {props.cityName
+              ? props.cityName
+              : weekdays[new Date(applicable_date).getDay()]}
           </div>
           <div className="meta">
             <span className="date">

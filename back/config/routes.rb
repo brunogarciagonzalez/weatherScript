@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/weather', to: 'cities#weatherData'
   post '/woe-id', to: 'cities#getWoeId'
   post '/login-user', to: 'users#loginUser'
+  post '/convert-woe', to: 'cities#alreadyHaveWoe'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

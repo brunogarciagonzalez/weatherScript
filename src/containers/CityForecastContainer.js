@@ -9,7 +9,7 @@ class CityForecastContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props.weatherData);
+    // console.log(this.props.weatherData);
     return (
       <div>
         <div className="ui block header">{this.props.randomCityName}</div>

@@ -72,6 +72,11 @@ class CitiesController < ApplicationController
 
   end
 
+  def alreadyHaveWoe
+    @woe = params[:woeId]
+    self.weatherData(@woe)
+  end
+
   def weatherData(woeId)
     all_data = RestClient.get("https://www.metaweather.com/api/location/#{woeId}/")
     json = JSON.parse(all_data)
