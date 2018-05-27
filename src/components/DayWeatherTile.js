@@ -38,16 +38,18 @@ const DayWeatherTile = props => {
     min_temp,
     max_temp,
     the_temp,
-    weather_state_abbr
+    weather_state_abbr,
+    weather_state_name
   } = props.day;
-
-  console.log(props);
 
   return (
     <div className="column">
       <div className="ui fluid card">
         <div className="image">
-          <img src={require(`../weather_images/${weather_state_abbr}.svg`)} />
+          <img
+            alt={`image of ${weather_state_name} weather`}
+            src={require(`../weather_images/${weather_state_abbr}.svg`)}
+          />
         </div>
         <div className="content">
           <div className="header">
