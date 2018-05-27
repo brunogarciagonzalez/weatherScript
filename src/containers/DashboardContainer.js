@@ -7,7 +7,8 @@ class DashboardContainer extends React.Component {
     super();
 
     this.state = {
-      searchResults: []
+      searchResults: [],
+      lastSearchTerm: ""
     };
   }
 
@@ -26,7 +27,8 @@ class DashboardContainer extends React.Component {
       .then(res => res.json())
       .then(json =>
         this.setState({
-          searchResults: json
+          searchResults: json,
+          lastSearchTerm: searchTerm
         })
       );
   };
@@ -35,7 +37,11 @@ class DashboardContainer extends React.Component {
     return (
       <div>
         <SearchBar handleResults={this.handleResults} />
-        <SearchResultsContainer results={this.state.searchResults} />
+        <SearchResultsContainer
+          setCityWoeId={this.props.setCityWoeId}
+          searched={this.state.lastSearchTerm}
+          results={this.state.searchResults}
+        />
       </div>
     );
   }
