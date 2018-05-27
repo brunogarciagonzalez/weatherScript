@@ -5,18 +5,47 @@ class CityPageContainer extends React.Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      title: "",
+      parent: "",
+      forecast: []
+    };
+  }
+
+  componentWillMount() {
+    // using this.props.woeId, fetch weather info
+    fetch(`http://localhost:3000/convert-woe`, {
+      method: "POST",
+      body: JSON.stringify({
+        woeId: this.props.woeId
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(r => r.json())
+      .then(json => {
+        let fiveDayForecast = json.consolidated_weather.slice(1);
+        this.setState({
+          title: json.title,
+          parent: json.parent.title,
+          forecast: fiveDayForecast
+        });
+      });
   }
 
   render() {
     return (
       <div>
-        <h1>{this.props.woeId}</h1>
         <button>Add City</button>
+        <CityForecastContainer
+          cityName={`${this.state.title}, ${this.state.parent}`}
+          weatherData={this.state.forecast}
+        />
       </div>
     );
   }
 }
-// <CityForecastContainer weatherData={} />
 
 export default CityPageContainer;

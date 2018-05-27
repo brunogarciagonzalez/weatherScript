@@ -63,7 +63,7 @@ class LoginContainer extends React.Component {
           handleLogIn={this.props.handleLogIn}
         />
         <CityForecastContainer
-          randomCityName={this.state.randomCityName}
+          cityName={this.state.randomCityName}
           weatherData={this.state.weatherData}
         />
       </div>
