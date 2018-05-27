@@ -47,7 +47,7 @@ const DayWeatherTile = props => {
       <div className="ui fluid card">
         <div className="image">
           <img
-            alt={`image of ${weather_state_name} weather`}
+            alt={`${weather_state_name} weather`}
             src={require(`../weather_images/${weather_state_abbr}.svg`)}
           />
         </div>
