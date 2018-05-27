@@ -1,5 +1,5 @@
 import React from "react";
-import CityTile from "../components/CityTile";
+import ResultsCityTile from "../components/ResultsCityTile";
 
 class SearchResultsContainer extends React.Component {
   constructor() {
@@ -12,7 +12,7 @@ class SearchResultsContainer extends React.Component {
     return (
       <div>
         {this.props.results.map(city => {
-          return <CityTile key={city.woeid} city={city} />;
+          return <ResultsCityTile key={city.woeid} city={city} />;
         })}
       </div>
     );

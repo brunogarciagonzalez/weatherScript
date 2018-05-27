@@ -37,7 +37,6 @@ class CityTile extends React.Component {
   };
 
   render() {
-    debugger;
     return (
       <div>
         {this.state.currentDay ? (
