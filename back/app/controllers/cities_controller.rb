@@ -61,7 +61,9 @@ class CitiesController < ApplicationController
       # else need searchResults functionality
 
       if json.length == 0
-        # what here?
+        # there were no results
+
+        render json: [], status: 200
       elsif json.length == 1
         # persist in db
         # send to self.weatherData, with second argument of: true,
@@ -90,7 +92,6 @@ class CitiesController < ApplicationController
     # given addParentBoolean, update db or not
     if addParentBoolean
       # update our db with city's parent before rendering
-      json["parent"]["title"]
 
       City.find_by(woe_id: woeId).update(parent: json["parent"]["title"])
 

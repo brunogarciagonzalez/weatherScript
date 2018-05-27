@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar";
 import LoginContainer from "./containers/LoginContainer";
 import DashboardContainer from "./containers/DashboardContainer";
 // import SearchResultsContainer from "./components/SearchResultsContainer";
-// import CityPageContainer from "./components/CityPageContainer";
+import CityPageContainer from "./containers/CityPageContainer";
 import "./App.css";
 
 class App extends Component {
@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       newUser: false,
-      currentUser: {}
+      currentUser: {},
+      cityWoeIds: []
     };
   }
 
@@ -31,8 +32,40 @@ class App extends Component {
     });
   };
 
+  setCityWoeId = (woeId, city) => {
+    let copy = [...this.state.cityWoeIds];
+    copy.push(woeId);
+    this.setState(
+      {
+        cityWoeIds: copy
+      },
+      () => {
+        // go to window newest state
+        // not sure how else to do this other than to pushState twice and ask window to go back once
+        window.history.pushState(
+          {
+            title: `WeatherScript: ${city}`,
+            relative_url: `/cities/${woeId}`
+          },
+          `WeatherScript: ${city}`,
+          `/cities/${woeId}`
+        );
+
+        window.history.pushState(
+          {
+            title: `WeatherScript: ${city}`,
+            relative_url: `/cities/${woeId}`
+          },
+          `WeatherScript: ${city}`,
+          `/cities/${woeId}`
+        );
+
+        window.history.back();
+      }
+    );
+  };
+
   render() {
-    // console.log(this.state.currentUser);
     return (
       <BrowserRouter>
         <div>
@@ -54,9 +87,21 @@ class App extends Component {
             exact
             path="/dashboard"
             render={() => (
-              <DashboardContainer currentUser={this.state.currentUser} />
+              <DashboardContainer currentUser={this.state.currentUser} setCityWoeId={this.setCityWoeId} />
             )}
           />
+
+          {this.state.cityWoeIds.map(woeid => {
+            console.log("route present for: ", woeid);
+            return (
+              <Route
+                key={woeid}
+                exact
+                path={`/cities/${woeid}`}
+                render={() => <CityPageContainer woeId={woeid} />}
+              />
+            );
+          })}
         </div>
       </BrowserRouter>
     );
