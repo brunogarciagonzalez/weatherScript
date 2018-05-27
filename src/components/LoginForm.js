@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class LoginForm extends React.Component {
   constructor() {
@@ -127,9 +128,13 @@ class LoginForm extends React.Component {
                 />
               </div>
             </div>
-            <div className="ui submit button" onClick={this.loginUser}>
+            <Link
+              to="/dashboard"
+              className="ui submit button"
+              onClick={this.loginUser}
+            >
               Sign In
-            </div>
+            </Link>
           </div>
           <a onClick={this.props.createUser}>New Account</a>
         </div>

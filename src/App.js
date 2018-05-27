@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import LoginContainer from "./containers/LoginContainer";
-// import DashboardContainer from "./components/DashboardContainer";
+import DashboardContainer from "./containers/DashboardContainer";
 // import SearchResultsContainer from "./components/SearchResultsContainer";
 // import CityPageContainer from "./components/CityPageContainer";
 import "./App.css";
@@ -32,29 +32,31 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.state.currentUser);
+    console.log(this.state.currentUser);
     return (
       <BrowserRouter>
         <div>
           <NavBar createUser={this.createUser} loggedIn={this.state.loggedIn} />
-          <Route
-            exact
-            path="/login"
-            render={() => (
-              <LoginContainer
-                newUser={this.state.newUser}
-                createUser={this.createUser}
-                handleLogIn={this.handleLogIn}
-              />
-            )}
-          />
+          {this.state.loggedIn ? null : (
+            <Route
+              exact
+              path="/login"
+              render={() => (
+                <LoginContainer
+                  newUser={this.state.newUser}
+                  createUser={this.createUser}
+                  handleLogIn={this.handleLogIn}
+                />
+              )}
+            />
+          )}
+          <Route exact path="/dashboard" component={DashboardContainer} />
         </div>
       </BrowserRouter>
     );
   }
 }
 
-// <Route exact path="/dashboard" component={DashboardContainer} />
 // <Route
 //   exact
 //   path="/search-results"

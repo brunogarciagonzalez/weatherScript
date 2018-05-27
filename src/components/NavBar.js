@@ -1,6 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-// import { Menu, Card } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 const NavBar = props => {
   return (
@@ -11,11 +10,11 @@ const NavBar = props => {
         id="login-nav"
         onClick={props.createUser}
       >
-        <NavLink to="/login">Login</NavLink>
+        <Link to="/login">Login</Link>
       </div>
       {props.loggedIn ? (
         <div className="item" name="dashboard">
-          <NavLink to="/dashboard">Dashboard</NavLink>
+          <Link to="/dashboard">Dashboard</Link>
         </div>
       ) : null}
     </div>
