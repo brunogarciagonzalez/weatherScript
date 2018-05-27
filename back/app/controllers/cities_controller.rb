@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
 
   def getWoeId
+    puts params
     @city_name = params[:city]
 
     # ================== _ 1 _ ==================
@@ -52,7 +53,6 @@ class CitiesController < ApplicationController
 
       parsed_city_name = final_city_name.gsub(' ', '%20')
       woe_data = RestClient.get("https://www.metaweather.com/api/location/search/?query=#{parsed_city_name}")
-      puts woe_data
       json = JSON.parse(woe_data) # returns an array, even if of one object
 
 
@@ -71,6 +71,7 @@ class CitiesController < ApplicationController
         self.weatherData(the_city['woeid'], true)
       else
         # need searchResults functionality
+        render json: json, status: 200
       end
     end
 
