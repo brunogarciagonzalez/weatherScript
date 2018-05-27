@@ -79,6 +79,11 @@ class CitiesController < ApplicationController
 
   end
 
+  def alreadyHaveWoe
+    @woe = params[:woeId]
+    self.weatherData(@woe)
+  end
+
   def weatherData(woeId, addParentBoolean)
     # given weoID, get 5-day forecast
     all_data = RestClient.get("https://www.metaweather.com/api/location/#{woeId}/")

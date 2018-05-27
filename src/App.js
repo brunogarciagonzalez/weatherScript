@@ -87,7 +87,7 @@ class App extends Component {
             exact
             path="/dashboard"
             render={() => (
-              <DashboardContainer setCityWoeId={this.setCityWoeId} />
+              <DashboardContainer currentUser={this.state.currentUser} setCityWoeId={this.setCityWoeId} />
             )}
           />
 
