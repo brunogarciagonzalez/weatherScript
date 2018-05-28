@@ -13,7 +13,7 @@ class CityTile extends React.Component {
   }
 
   componentDidMount() {
-    console.log(`props for ${this.props.city.name}`, this.props);
+    console.log(`CityTile props for ${this.props.city.name}`, this.props);
     fetch(`http://localhost:3000/convert-woe`, {
       method: "POST",
       body: JSON.stringify({
@@ -45,6 +45,9 @@ class CityTile extends React.Component {
             <div className="ui fluid link card">
               <div className="image">
                 <img
+                  alt={`current weather visual for ${this.props.city.name}, ${
+                    this.props.city.parent
+                  }`}
                   src={require(`../weather_images/${
                     this.state.currentDay.weather_state_abbr
                   }.svg`)}

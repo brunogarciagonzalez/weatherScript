@@ -7,6 +7,12 @@ import DashboardContainer from "./containers/DashboardContainer";
 import CityPageContainer from "./containers/CityPageContainer";
 import "./App.css";
 
+Array.prototype.unique = function() {
+  return this.filter(function(value, index, self) {
+    return self.indexOf(value) === index;
+  });
+};
+
 class App extends Component {
   constructor() {
     super();
@@ -31,16 +37,18 @@ class App extends Component {
         loggedIn: !this.state.loggedIn,
         currentUser: user
       },
-      () => console.log("current user", this.state.currentUser)
+      () =>
+        console.log("state.currentUser (after login):", this.state.currentUser)
     );
   };
 
   setCityWoeId = (woeId, city) => {
     let copy = [...this.state.cityWoeIds];
     copy.push(woeId);
+
     this.setState(
       {
-        cityWoeIds: copy
+        cityWoeIds: copy.unique()
       },
       () => {
         // go to window newest state
@@ -74,9 +82,6 @@ class App extends Component {
     // optimistic rendering
     // edit state.currentUser.cities
     // redirect to dashboard
-    let state = this.state;
-
-    debugger;
     let c = [...this.state.currentUser.cities];
     // how a city looks in currentUser.cities: {id: 46, name: "London", parent: "England", woe_id: 44418}
 
@@ -94,7 +99,11 @@ class App extends Component {
           cities: c
         }
       },
-      () => console.log("check:", this.state.currentUser)
+      () =>
+        console.log(
+          "state.currentUser check (optimistic render after add City):",
+          this.state.currentUser
+        )
     );
 
     // need to fetch post, sending currentUserId and dbId
@@ -112,7 +121,10 @@ class App extends Component {
     })
       .then(r => r.json())
       .then(json => {
-        console.log(json);
+        console.log(
+          "state.currentUser check (db persistence after add City):",
+          json
+        );
         return json;
       })
       .then(json => {
@@ -176,7 +188,7 @@ class App extends Component {
     })
       .then(r => r.json())
       .then(json => {
-        console.log(json);
+        console.log("removeCityHandler json:", json);
         return json;
       })
       .then(json => {
