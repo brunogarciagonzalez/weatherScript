@@ -73,7 +73,7 @@ class CityTile extends React.Component {
 
               {this.state.showFront ? (
                 <div className="description">
-                  {this.state.currentDay.weather_state_name}
+                  <strong>{this.state.currentDay.weather_state_name}</strong>
                   <br />
                   {`(Consensus: ${this.state.currentDay.predictability}%)`}
                   <hr />
@@ -91,15 +91,21 @@ class CityTile extends React.Component {
                 </div>
               ) : (
                 <div className="description">
-                  {`Humidity: ${this.state.currentDay.humidity}%`}
+                  {this.state.currentDay.humidity
+                    ? `Humidity: ${this.state.currentDay.humidity}%`
+                    : "Humidity: n/a"}
                   <br />
-                  {`Wind: ${this.state.currentDay.wind_speed.toFixed(1)} mph ${
-                    this.state.currentDay.wind_direction_compass
-                  }`}
+                  {this.state.currentDay.wind_speed
+                    ? `Wind: ${this.state.currentDay.wind_speed.toFixed(
+                        1
+                      )} mph ${this.state.currentDay.wind_direction_compass}`
+                    : "Wind: n/a"}
                   <br />
-                  {`Visibility: ${this.state.currentDay.visibility.toFixed(
-                    1
-                  )} miles`}
+                  {this.state.currentDay.visibility
+                    ? `Visibility: ${this.state.currentDay.visibility.toFixed(
+                        1
+                      )} miles`
+                    : "Visibility: n/a"}
                 </div>
               )}
             </div>

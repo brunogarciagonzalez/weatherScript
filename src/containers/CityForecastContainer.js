@@ -9,7 +9,6 @@ class CityForecastContainer extends React.Component {
   }
 
   render() {
-    console.log("allJson:", this.props.allJson);
     return (
       <div>
         <div className="ui block header">{this.props.cityName}</div>
