@@ -9,7 +9,8 @@ class DashboardContainer extends React.Component {
 
     this.state = {
       searchResults: [],
-      lastSearchTerm: ""
+      lastSearchTerm: "",
+      searched: false
     };
   }
 
@@ -34,15 +35,26 @@ class DashboardContainer extends React.Component {
       );
   };
 
+  resultsShowHandler = () => {
+    this.setState({
+      searched: true
+    });
+  };
+
   render() {
     return (
       <div>
-        <SearchBar handleResults={this.handleResults} />
-        <SearchResultsContainer
-          setCityWoeId={this.props.setCityWoeId}
-          searched={this.state.lastSearchTerm}
-          results={this.state.searchResults}
+        <SearchBar
+          resultsShowHandler={this.resultsShowHandler}
+          handleResults={this.handleResults}
         />
+        {this.state.searched ? (
+          <SearchResultsContainer
+            setCityWoeId={this.props.setCityWoeId}
+            searched={this.state.lastSearchTerm}
+            results={this.state.searchResults}
+          />
+        ) : null}
         <MyCitiesContainer currentUser={this.props.currentUser} />
       </div>
     );

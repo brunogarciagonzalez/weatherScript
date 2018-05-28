@@ -10,10 +10,13 @@ class SearchResultsContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ui segment">
         {this.props.results.length > 0 ? (
           <div>
-            <div>Searched: {this.props.searched}</div>
+            <div>
+              <strong>Searched: {this.props.searched}</strong>
+              <hr />
+            </div>
             {this.props.results.map(city => {
               return (
                 <ResultsCityTile
@@ -27,7 +30,10 @@ class SearchResultsContainer extends React.Component {
         ) : (
           <div>
             {this.props.searched !== "" ? (
-              <div>Searched: {this.props.searched}</div>
+              <div>
+                <strong>Searched: {this.props.searched}</strong>
+                <hr />
+              </div>
             ) : null}
             <div>No search results.</div>
           </div>
