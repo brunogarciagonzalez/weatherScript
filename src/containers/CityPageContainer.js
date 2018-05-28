@@ -15,7 +15,7 @@ class CityPageContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/convert-woe`, {
+    fetch(`http://localhost:3000/convert-woe-plus-parent`, {
       method: "POST",
       body: JSON.stringify({
         woeId: this.props.woeId
