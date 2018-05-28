@@ -84,9 +84,13 @@ class CityPageContainer extends React.Component {
       <div>
         {this.props.loggedIn ? (
           this.state.isUserCity ? (
-            <button onClick={this.removeCity}>Remove From My Cities</button>
+            <button className="ui submit button" onClick={this.removeCity}>
+              Remove From My Cities
+            </button>
           ) : (
-            <button onClick={this.addCity}>Add To My Cities</button>
+            <button className="ui submit button" onClick={this.addCity}>
+              Add To My Cities
+            </button>
           )
         ) : null}
 
