@@ -26,10 +26,13 @@ class App extends Component {
   };
 
   handleLogIn = user => {
-    this.setState({
-      loggedIn: !this.state.loggedIn,
-      currentUser: user
-    });
+    this.setState(
+      {
+        loggedIn: !this.state.loggedIn,
+        currentUser: user
+      },
+      () => console.log("current user", this.state.currentUser)
+    );
   };
 
   setCityWoeId = (woeId, city) => {
@@ -87,18 +90,25 @@ class App extends Component {
             exact
             path="/dashboard"
             render={() => (
-              <DashboardContainer currentUser={this.state.currentUser} setCityWoeId={this.setCityWoeId} />
+              <DashboardContainer
+                currentUser={this.state.currentUser}
+                setCityWoeId={this.setCityWoeId}
+              />
             )}
           />
 
           {this.state.cityWoeIds.map(woeid => {
-            console.log("route present for: ", woeid);
             return (
               <Route
                 key={woeid}
                 exact
                 path={`/cities/${woeid}`}
-                render={() => <CityPageContainer woeId={woeid} />}
+                render={() => (
+                  <CityPageContainer
+                    woeId={woeid}
+                    currentUser={this.state.currentUser}
+                  />
+                )}
               />
             );
           })}
