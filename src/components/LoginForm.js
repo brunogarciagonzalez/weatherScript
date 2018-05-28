@@ -34,7 +34,7 @@ class LoginForm extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(json => console.log(json));
+      .then(json => this.props.handleLogIn(json));
   };
 
   loginUser = () => {
@@ -97,9 +97,13 @@ class LoginForm extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="ui submit button" onClick={this.saveUser}>
+            <Link
+              className="ui submit button"
+              to="/dashboard"
+              onClick={this.saveUser}
+            >
               Sign Up!
-            </div>
+            </Link>
           </div>
           <a onClick={this.props.createUser}>Log In</a>
         </div>
