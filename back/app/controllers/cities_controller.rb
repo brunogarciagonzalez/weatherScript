@@ -72,7 +72,21 @@ class CitiesController < ApplicationController
         City.create(name: the_city['title'], woe_id: the_city['woeid'])
         self.weatherData(the_city['woeid'], true)
       else
-        # need searchResults functionality
+        # since more than one result,
+        # need searchResults functionality to show up in front-end
+
+
+        # need to save each woeid into db
+        json.each do |city|
+          if City.find_by(woe_id: city['woeid'])
+            # already in db
+          else
+            # add to db
+            City.create(woe_id: city['woeid'], name: city['title'])
+          end
+        end
+
+
         render json: json, status: 200
       end
     end
@@ -84,10 +98,16 @@ class CitiesController < ApplicationController
     self.weatherData(@woe)
   end
 
+  def alreadyHaveWoePlusAddParent
+    @woe = params[:woeId]
+    self.weatherData(@woe, true)
+  end
+
   def weatherData(woeId, addParentBoolean=nil)
     # given weoID, get 5-day forecast
     all_data = RestClient.get("https://www.metaweather.com/api/location/#{woeId}/")
     json = JSON.parse(all_data)
+
 
     # given addParentBoolean, update db or not
     if addParentBoolean
@@ -95,10 +115,20 @@ class CitiesController < ApplicationController
 
       City.find_by(woe_id: woeId).update(parent: json["parent"]["title"])
 
+      # update json to include our db's id of city (for MyCity management purposes)
+      db_id = City.find_by(woe_id: woeId).id
+
+      json["db_id"] = db_id
+
       render json: json, status: 200
     else
       # render results to front-end
-    render json: json, status: 200
+
+      # update json to include our db's id of city (for MyCity management purposes)
+      db_id = City.find_by(woe_id: woeId).id
+
+      json["db_id"] = db_id
+      render json: json, status: 200
     end
   end
 
