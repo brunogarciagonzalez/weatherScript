@@ -59,6 +59,7 @@ class LoginContainer extends React.Component {
       <div>
         <LoginForm
           newUser={this.props.newUser}
+          homeScreen={this.props.homeScreen}
           createUser={this.props.createUser}
           handleLogIn={this.props.handleLogIn}
         />

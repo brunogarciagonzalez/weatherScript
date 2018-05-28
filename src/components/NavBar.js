@@ -8,7 +8,7 @@ const NavBar = props => {
         className="item"
         name="login"
         id="login-nav"
-        onClick={props.createUser}
+        onClick={props.homeScreen}
       >
         <Link to="/login">Login</Link>
       </div>

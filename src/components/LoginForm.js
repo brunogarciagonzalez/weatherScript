@@ -105,7 +105,7 @@ class LoginForm extends React.Component {
               Sign Up!
             </Link>
           </div>
-          <a onClick={this.props.createUser}>Log In</a>
+          <a onClick={this.props.homeScreen}>Log In</a>
         </div>
       </div>
     ) : (
