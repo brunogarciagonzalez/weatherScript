@@ -108,16 +108,27 @@ class CitiesController < ApplicationController
     all_data = RestClient.get("https://www.metaweather.com/api/location/#{woeId}/")
     json = JSON.parse(all_data)
 
+
     # given addParentBoolean, update db or not
     if addParentBoolean
       # update our db with city's parent before rendering
 
       City.find_by(woe_id: woeId).update(parent: json["parent"]["title"])
 
+      # update json to include our db's id of city (for MyCity management purposes)
+      db_id = City.find_by(woe_id: woeId).id
+
+      json["db_id"] = db_id
+
       render json: json, status: 200
     else
       # render results to front-end
-    render json: json, status: 200
+
+      # update json to include our db's id of city (for MyCity management purposes)
+      db_id = City.find_by(woe_id: woeId).id
+
+      json["db_id"] = db_id
+      render json: json, status: 200
     end
   end
 

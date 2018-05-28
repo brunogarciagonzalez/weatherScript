@@ -68,6 +68,141 @@ class App extends Component {
     );
   };
 
+  addMyCityHandler = city => {
+    // this function is only reachable if user logged in and this city is not already a MyCity
+
+    // optimistic rendering
+    // edit state.currentUser.cities
+    // redirect to dashboard
+    let state = this.state;
+
+    debugger;
+    let c = [...this.state.currentUser.cities];
+    // how a city looks in currentUser.cities: {id: 46, name: "London", parent: "England", woe_id: 44418}
+
+    c.push({
+      id: city.dbId,
+      name: city.title,
+      parent: city.parent,
+      woe_id: city.woeId
+    });
+
+    this.setState(
+      {
+        currentUser: {
+          ...this.state.currentUser,
+          cities: c
+        }
+      },
+      () => console.log("check:", this.state.currentUser)
+    );
+
+    // need to fetch post, sending currentUserId and dbId
+    // to user-cities controller
+    fetch("http://localhost:3000/add-city", {
+      method: "POST",
+      body: JSON.stringify({
+        city_id: city.dbId,
+        user_id: this.state.currentUser.id
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(r => r.json())
+      .then(json => {
+        console.log(json);
+        return json;
+      })
+      .then(json => {
+        // redirect to dashboard:
+        window.history.pushState(
+          {
+            title: `WeatherScript: User Dashboard`,
+            relative_url: `/dashboard`
+          },
+          `WeatherScript: User Dashboard`,
+          `/dashboard`
+        );
+
+        window.history.pushState(
+          {
+            title: `WeatherScript: User Dashboard`,
+            relative_url: `/dashboard`
+          },
+          `WeatherScript: User Dashboard`,
+          `/dashboard`
+        );
+
+        window.history.back();
+      });
+  };
+
+  removeMyCityHandler = city => {
+    // this function is only reachable if user logged in and this city is already a MyCity
+
+    // optimistic rendering
+    // edit state.currentUser.cities
+    // redirect to dashboard
+
+    let c = [...this.state.currentUser.cities];
+    // how a city looks in currentUser.cities: {id: 46, name: "London", parent: "England", woe_id: 44418}
+
+    let d = c.filter(cty => {
+      return cty.id !== city.dbId;
+    });
+
+    this.setState({
+      currentUser: {
+        ...this.state.currentUser,
+        cities: d
+      }
+    });
+
+    // need to fetch post, sending currentUserId and dbId
+    // to user-cities controller
+
+    fetch("http://localhost:3000/remove-city", {
+      method: "POST",
+      body: JSON.stringify({
+        city_id: city.dbId,
+        user_id: this.state.currentUser.id
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(r => r.json())
+      .then(json => {
+        console.log(json);
+        return json;
+      })
+      .then(json => {
+        // redirect to dashboard:
+        window.history.pushState(
+          {
+            title: `WeatherScript: User Dashboard`,
+            relative_url: `/dashboard`
+          },
+          `WeatherScript: User Dashboard`,
+          `/dashboard`
+        );
+
+        window.history.pushState(
+          {
+            title: `WeatherScript: User Dashboard`,
+            relative_url: `/dashboard`
+          },
+          `WeatherScript: User Dashboard`,
+          `/dashboard`
+        );
+
+        window.history.back();
+      });
+  };
+
   render() {
     return (
       <BrowserRouter>
@@ -108,6 +243,8 @@ class App extends Component {
                     woeId={woeid}
                     currentUser={this.state.currentUser}
                     loggedIn={this.state.loggedIn}
+                    addMyCityHandler={this.addMyCityHandler}
+                    removeMyCityHandler={this.removeMyCityHandler}
                   />
                 )}
               />

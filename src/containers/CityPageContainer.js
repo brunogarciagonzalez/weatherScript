@@ -10,6 +10,7 @@ class CityPageContainer extends React.Component {
       title: "",
       parent: "",
       woeId: null,
+      dbId: null,
       forecast: []
     };
   }
@@ -33,6 +34,7 @@ class CityPageContainer extends React.Component {
           title: json.title,
           parent: json.parent.title,
           woeId: json.woeid,
+          dbId: json.db_id,
           forecast: fiveDayForecast
         });
       })
@@ -53,14 +55,36 @@ class CityPageContainer extends React.Component {
     }
   };
 
+  addCity = () => {
+    // takes in the city
+    let city = {
+      title: this.state.title,
+      parent: this.state.parent,
+      woeId: this.state.woeId,
+      dbId: this.state.dbId
+    };
+    this.props.addMyCityHandler(city);
+  };
+
+  removeCity = () => {
+    // takes in the city
+    let city = {
+      title: this.state.title,
+      parent: this.state.parent,
+      woeId: this.state.woeId,
+      dbId: this.state.dbId
+    };
+    this.props.removeMyCityHandler(city);
+  };
+
   render() {
     return (
       <div>
         {this.props.loggedIn ? (
           this.state.isUserCity ? (
-            <button>Remove From My Cities</button>
+            <button onClick={this.removeCity}>Remove From My Cities</button>
           ) : (
-            <button>Add To My Cities</button>
+            <button onClick={this.addCity}>Add To My Cities</button>
           )
         ) : null}
 

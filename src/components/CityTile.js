@@ -13,6 +13,7 @@ class CityTile extends React.Component {
   }
 
   componentDidMount() {
+    console.log(`props for ${this.props.city.name}`, this.props);
     fetch(`http://localhost:3000/convert-woe`, {
       method: "POST",
       body: JSON.stringify({
