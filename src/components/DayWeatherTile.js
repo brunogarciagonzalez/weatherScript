@@ -39,7 +39,8 @@ const DayWeatherTile = props => {
     max_temp,
     the_temp,
     weather_state_abbr,
-    weather_state_name
+    weather_state_name,
+    predictability
   } = props.day;
 
   // console.log(props.singleDay);
@@ -66,6 +67,10 @@ const DayWeatherTile = props => {
             </span>
           </div>
           <div className="description">
+            {weather_state_name}
+            <br />
+            {`(Consensus: ${predictability}%)`}
+            <hr />
             {props.index === 0 ? (
               <span>
                 Current Temp: {celsiusConversion(the_temp)}

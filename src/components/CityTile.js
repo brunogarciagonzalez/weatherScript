@@ -8,9 +8,16 @@ class CityTile extends React.Component {
 
     this.state = {
       currentDay: "",
-      cityName: ""
+      cityName: "",
+      showFront: true
     };
   }
+
+  toggleCard = () => {
+    this.setState({
+      showFront: !this.state.showFront
+    });
+  };
 
   componentDidMount() {
     console.log(`CityTile props for ${this.props.city.name}`, this.props);
@@ -41,12 +48,12 @@ class CityTile extends React.Component {
     return (
       <div className="column">
         {this.state.currentDay ? (
-          <div className="ui link card">
+          <div className="ui link card" onClick={this.toggleCard}>
             <div className="image">
               <img
                 alt={`current weather visual for ${this.props.city.name}, ${
-                    this.props.city.parent
-                  }`}
+                  this.props.city.parent
+                }`}
                 src={require(`../weather_images/${
                   this.state.currentDay.weather_state_abbr
                 }.svg`)}
@@ -62,17 +69,39 @@ class CityTile extends React.Component {
                     .slice(1)
                     .join(" ")}
                 </span>
+              </div>
 
-              </div>
-              <div className="description">
-                Current Temp:{" "}
-                {this.celsiusConversion(this.state.currentDay.the_temp)}
-                <br />
-                Hi / Low:{" "}
-                {`${this.celsiusConversion(
-                  this.state.currentDay.max_temp
-                )} / ${this.celsiusConversion(this.state.currentDay.min_temp)}`}
-              </div>
+              {this.state.showFront ? (
+                <div className="description">
+                  {this.state.currentDay.weather_state_name}
+                  <br />
+                  {`(Consensus: ${this.state.currentDay.predictability}%)`}
+                  <hr />
+                  Current Temp:{" "}
+                  {`${this.celsiusConversion(
+                    this.state.currentDay.the_temp
+                  )} °F`}
+                  <br />
+                  Hi / Low:{" "}
+                  {`${this.celsiusConversion(
+                    this.state.currentDay.max_temp
+                  )} °F / ${this.celsiusConversion(
+                    this.state.currentDay.min_temp
+                  )} °F`}
+                </div>
+              ) : (
+                <div className="description">
+                  {`Humidity: ${this.state.currentDay.humidity}%`}
+                  <br />
+                  {`Wind: ${this.state.currentDay.wind_speed.toFixed(1)} mph ${
+                    this.state.currentDay.wind_direction_compass
+                  }`}
+                  <br />
+                  {`Visibility: ${this.state.currentDay.visibility.toFixed(
+                    1
+                  )} miles`}
+                </div>
+              )}
             </div>
           </div>
         ) : null}
