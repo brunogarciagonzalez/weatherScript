@@ -7,12 +7,6 @@ import DashboardContainer from "./containers/DashboardContainer";
 import CityPageContainer from "./containers/CityPageContainer";
 import "./App.css";
 
-Array.prototype.unique = function() {
-  return this.filter(function(value, index, self) {
-    return self.indexOf(value) === index;
-  });
-};
-
 class App extends Component {
   constructor() {
     super();
@@ -44,11 +38,14 @@ class App extends Component {
 
   setCityWoeId = (woeId, city) => {
     let copy = [...this.state.cityWoeIds];
-    copy.push(woeId);
+
+    if (!copy.includes(woeId)) {
+      copy.push(woeId);
+    }
 
     this.setState(
       {
-        cityWoeIds: copy.unique()
+        cityWoeIds: copy
       },
       () => {
         // go to window newest state
