@@ -107,6 +107,7 @@ class App extends Component {
                   <CityPageContainer
                     woeId={woeid}
                     currentUser={this.state.currentUser}
+                    loggedIn={this.state.loggedIn}
                   />
                 )}
               />
