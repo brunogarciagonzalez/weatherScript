@@ -25,9 +25,17 @@ class App extends Component {
     };
   }
 
+  homeScreen = () => {
+    this.setState({
+      loggedIn: false,
+      newUser: false,
+      currentUser: {}
+    });
+  };
+
   createUser = () => {
     this.setState({
-      newUser: !this.state.newUser
+      newUser: true
     });
   };
 
@@ -219,7 +227,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <NavBar createUser={this.createUser} loggedIn={this.state.loggedIn} />
+          <NavBar homeScreen={this.homeScreen} loggedIn={this.state.loggedIn} />
           {this.state.loggedIn ? null : (
             <Route
               exact
@@ -227,6 +235,7 @@ class App extends Component {
               render={() => (
                 <LoginContainer
                   newUser={this.state.newUser}
+                  homeScreen={this.homeScreen}
                   createUser={this.createUser}
                   handleLogIn={this.handleLogIn}
                 />
