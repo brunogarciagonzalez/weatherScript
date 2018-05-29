@@ -26,27 +26,40 @@ class SearchResultsContainer extends React.Component {
             <div className="two wide column" />
             <div className="twelve wide column">
               <div className="ui segment">
-                {this.props.results.length > 0 ? (
-                  <div>
+                {Array.isArray(this.props.results) ? (
+                  this.props.results.length > 0 ? (
+                    <div>
+                      <div>
+                        <strong>Searched: {this.props.searched}</strong>
+                        <hr />
+                      </div>
+
+                      {this.props.results.map(city => {
+                        return (
+                          <ResultsCityTile
+                            setCityWoeId={this.props.setCityWoeId}
+                            key={city.woeid}
+                            city={city}
+                          />
+                        );
+                      })}
+                    </div>
+                  ) : (
                     <div>
                       <strong>Searched: {this.props.searched}</strong>
                       <hr />
+                      <div>No search results.</div>
                     </div>
-                    {this.props.results.map(city => {
-                      return (
-                        <ResultsCityTile
-                          setCityWoeId={this.props.setCityWoeId}
-                          key={city.woeid}
-                          city={city}
-                        />
-                      );
-                    })}
-                  </div>
+                  )
                 ) : (
                   <div>
-                    <strong>Searched: {this.props.searched}</strong>
                     <hr />
-                    <div>No search results.</div>
+                    <strong>
+                      <div>{`Only 1 result! Loading weather for ${
+                        this.props.results.title
+                      }...`}</div>
+                    </strong>
+                    <hr />
                   </div>
                 )}
               </div>
