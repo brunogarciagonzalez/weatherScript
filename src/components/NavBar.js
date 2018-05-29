@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const NavBar = props => {
   return (
-    <div className="ui huge menu">
+    <div className="ui massive menu">
       <div className="item">
-        <h3>WeatherScript</h3>
+        <h3>WeatherScript™</h3>
       </div>
       {props.loggedIn ? (
         <div

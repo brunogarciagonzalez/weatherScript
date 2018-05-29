@@ -13,7 +13,7 @@ class CityForecastContainer extends React.Component {
   };
 
   render() {
-    // debugger;
+    // console.log("PASSED WEATHER", this.props.weatherData[0]);
     return (
       <div className="ui grid">
         <div className="two wide column" />
@@ -62,7 +62,12 @@ class CityForecastContainer extends React.Component {
               <div className="five column row">
                 {this.props.weatherData.map((day, index) => {
                   return (
-                    <DayWeatherTile key={day.id} day={day} index={index} />
+                    <DayWeatherTile
+                      key={day.id}
+                      day={day}
+                      allJson={this.props.allJson}
+                      index={index}
+                    />
                   );
                 })}
               </div>

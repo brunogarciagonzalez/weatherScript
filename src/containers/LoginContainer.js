@@ -17,8 +17,6 @@ class LoginContainer extends React.Component {
       ],
       weatherData: []
     };
-
-    //this state should hold tem woeIds to fetch for main page
   }
 
   componentDidMount() {
@@ -43,18 +41,8 @@ class LoginContainer extends React.Component {
       );
   }
 
-  // getForecast = json => {
-  //   fetch(`http://localhost:3000/weather`)
-  //     .then(res => res.json())
-  //     .then(json =>
-  //       this.setState({
-  //         randomCityName: json.title,
-  //         weatherData: json.consolidated_weather.slice(0, 5)
-  //       })
-  //     );
-  // };
-
   render() {
+    console.log("WEATHER DATA", this.state.weatherData[0]);
     return (
       <div>
         <LoginForm
@@ -66,6 +54,7 @@ class LoginContainer extends React.Component {
         <CityForecastContainer
           cityName={this.state.randomCityName}
           weatherData={this.state.weatherData}
+          currentWeather={this.state.weatherData[0]}
         />
       </div>
     );
