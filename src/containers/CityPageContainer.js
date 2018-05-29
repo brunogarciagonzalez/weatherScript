@@ -11,7 +11,9 @@ class CityPageContainer extends React.Component {
       parent: "",
       woeId: null,
       dbId: null,
-      forecast: []
+      forecast: [],
+      allJson: null,
+      loaded: false
     };
   }
 
@@ -35,9 +37,11 @@ class CityPageContainer extends React.Component {
           parent: json.parent.title,
           woeId: json.woeid,
           dbId: json.db_id,
-          forecast: fiveDayForecast
+          forecast: fiveDayForecast,
+          allJson: json
         });
       })
+      .then(() => this.setState({ loaded: true }))
       .then(() => this.userCityCheck());
   }
 
@@ -56,7 +60,6 @@ class CityPageContainer extends React.Component {
   };
 
   addCity = () => {
-    // takes in the city
     let city = {
       title: this.state.title,
       parent: this.state.parent,
@@ -67,7 +70,6 @@ class CityPageContainer extends React.Component {
   };
 
   removeCity = () => {
-    // takes in the city
     let city = {
       title: this.state.title,
       parent: this.state.parent,
@@ -82,9 +84,13 @@ class CityPageContainer extends React.Component {
       <div>
         {this.props.loggedIn ? (
           this.state.isUserCity ? (
-            <button onClick={this.removeCity}>Remove From My Cities</button>
+            <button className="ui submit button" onClick={this.removeCity}>
+              Remove From My Cities
+            </button>
           ) : (
-            <button onClick={this.addCity}>Add To My Cities</button>
+            <button className="ui submit button" onClick={this.addCity}>
+              Add To My Cities
+            </button>
           )
         ) : null}
 
@@ -92,6 +98,17 @@ class CityPageContainer extends React.Component {
           cityName={`${this.state.title}, ${this.state.parent}`}
           weatherData={this.state.forecast}
         />
+
+        {this.state.loaded ? (
+          <div className="ui segment">
+            Current Time:{" "}
+            {`${this.state.allJson.time} (${this.state.allJson.timezone_name})`}
+            <br />
+            Sunrise: {this.state.allJson.sun_rise}
+            <br />
+            Sunset: {this.state.allJson.sun_set}
+          </div>
+        ) : null}
       </div>
     );
   }
