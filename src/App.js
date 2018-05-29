@@ -248,6 +248,7 @@ class App extends Component {
             path="/dashboard"
             render={() => (
               <DashboardContainer
+                loggedIn={this.state.loggedIn}
                 currentUser={this.state.currentUser}
                 setCityWoeId={this.setCityWoeId}
               />

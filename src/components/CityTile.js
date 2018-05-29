@@ -131,7 +131,7 @@ class CityTile extends React.Component {
             ) : null}
           </div>
         ) : (
-          <div style={{ "padding-top": "100px" }}>
+          <div style={{ paddingTop: "100px" }}>
             <div className="ui inverted active centered inline loader" />
           </div>
         )}
