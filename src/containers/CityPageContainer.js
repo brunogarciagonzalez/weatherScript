@@ -91,20 +91,8 @@ class CityPageContainer extends React.Component {
               isUserCity={this.state.isUserCity}
               removeCity={this.removeCity}
               addCity={this.addCity}
+              allJson={this.state.allJson}
             />
-
-            {this.state.loaded ? (
-              <div className="ui segment">
-                Current Time:{" "}
-                {`${this.state.allJson.time} (${
-                  this.state.allJson.timezone_name
-                })`}
-                <br />
-                Sunrise: {this.state.allJson.sun_rise}
-                <br />
-                Sunset: {this.state.allJson.sun_set}
-              </div>
-            ) : null}
           </div>
         ) : (
           <div style={{ paddingTop: "100px" }}>
