@@ -32,7 +32,7 @@ class DayWeatherTile extends React.Component {
   };
 
   render() {
-    console.log("HERE", this.props.day);
+    // console.log("HERE", this.props.day);
     return (
       <div className="column">
         <div
@@ -72,13 +72,6 @@ class DayWeatherTile extends React.Component {
                 <br />
                 {`(Consensus: ${this.props.day.predictability}%)`}
                 <hr />
-                {this.props.index === 0 ? (
-                  <span>
-                    Current Temp:{" "}
-                    {this.celsiusConversion(this.props.day.the_temp)} °F
-                    <br />
-                  </span>
-                ) : null}
                 Hi / Low:{" "}
                 {`${this.celsiusConversion(
                   this.props.day.max_temp

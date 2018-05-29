@@ -82,21 +82,13 @@ class CityPageContainer extends React.Component {
   render() {
     return (
       <div>
-        {this.props.loggedIn ? (
-          this.state.isUserCity ? (
-            <button className="ui submit button" onClick={this.removeCity}>
-              Remove From My Cities
-            </button>
-          ) : (
-            <button className="ui submit button" onClick={this.addCity}>
-              Add To My Cities
-            </button>
-          )
-        ) : null}
-
         <CityForecastContainer
           cityName={`${this.state.title}, ${this.state.parent}`}
           weatherData={this.state.forecast}
+          loggedIn={this.props.loggedIn}
+          isUserCity={this.state.isUserCity}
+          removeCity={this.removeCity}
+          addCity={this.addCity}
         />
 
         {this.state.loaded ? (

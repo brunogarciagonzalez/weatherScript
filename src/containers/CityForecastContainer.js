@@ -8,25 +8,64 @@ class CityForecastContainer extends React.Component {
     this.state = {};
   }
 
+  celsiusConversion = num => {
+    return parseInt(num * 1.8 + 32, 10);
+  };
+
   render() {
+    // debugger;
     return (
       <div className="ui grid">
         <div className="two wide column" />
         <div className="twelve wide column">
           <div className="ui segment">
-            <div className="ui grid">
-              <div className="four wide column" />
-              <div className="eight wide column">
-                <div className="ui block header">
-                  <h2 style={{ textAlign: "center" }}>{this.props.cityName}</h2>
+            <div className="ui vertically divided grid">
+              <div className="three column row">
+                <div className="column">
+                  {this.props.loggedIn ? (
+                    this.props.isUserCity ? (
+                      <button
+                        className="ui submit button"
+                        onClick={this.props.removeCity}
+                      >
+                        Remove From My Cities
+                      </button>
+                    ) : (
+                      <button
+                        className="ui submit button"
+                        onClick={this.props.addCity}
+                      >
+                        Add To My Cities
+                      </button>
+                    )
+                  ) : null}
                 </div>
+                <div className="column">
+                  <div className="ui block header">
+                    <h2 style={{ textAlign: "center" }}>
+                      {this.props.cityName}
+                      <br />
+                      {this.props.weatherData.length ? (
+                        <div>
+                          Current Temp:{" "}
+                          {this.celsiusConversion(
+                            this.props.weatherData[0].the_temp
+                          )}{" "}
+                          °F
+                        </div>
+                      ) : null}
+                    </h2>
+                  </div>
+                </div>
+                <div className="column" />
               </div>
-              <div className="four wide column" />
-            </div>
-            <div className="ui five column grid">
-              {this.props.weatherData.map((day, index) => {
-                return <DayWeatherTile key={day.id} day={day} index={index} />;
-              })}
+              <div className="five column row">
+                {this.props.weatherData.map((day, index) => {
+                  return (
+                    <DayWeatherTile key={day.id} day={day} index={index} />
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 const NavBar = props => {
   return (
     <div className="ui huge menu">
+      <div className="item">
+        <h3>WeatherScript</h3>
+      </div>
       {props.loggedIn ? (
         <div
           className="item"
@@ -21,6 +24,11 @@ const NavBar = props => {
           onClick={props.homeScreen}
         >
           <Link to="/login">Login</Link>
+        </div>
+      )}
+      {props.loggedIn ? null : (
+        <div className="item" name="search">
+          <Link to="/dashboard">Search</Link>
         </div>
       )}
       {props.loggedIn ? (
