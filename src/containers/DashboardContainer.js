@@ -68,6 +68,7 @@ class DashboardContainer extends React.Component {
   render() {
     return (
       <div>
+        <div id="testing" />
         <SearchBar
           resultsShowHandler={this.resultsShowHandler}
           handleResults={this.handleResults}

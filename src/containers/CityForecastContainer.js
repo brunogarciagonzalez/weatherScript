@@ -46,13 +46,13 @@ class CityForecastContainer extends React.Component {
                       {this.props.cityName}
                       <br />
                       {this.props.weatherData.length ? (
-                        <div>
+                        <p>
                           Current Temp:{" "}
                           {this.celsiusConversion(
                             this.props.weatherData[0].the_temp
                           )}{" "}
                           °F
-                        </div>
+                        </p>
                       ) : null}
                     </h2>
                   </div>
