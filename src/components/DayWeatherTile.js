@@ -35,7 +35,11 @@ class DayWeatherTile extends React.Component {
     console.log("HERE", this.props.day);
     return (
       <div className="column">
-        <div className="ui fluid card" onClick={this.toggleCard}>
+        <div
+          className="ui fluid card"
+          onMouseEnter={this.toggleCard}
+          onMouseLeave={this.toggleCard}
+        >
           <div className="image">
             <img
               alt={`${this.props.day.weather_state_name} weather`}

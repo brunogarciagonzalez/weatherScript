@@ -48,7 +48,17 @@ class CityTile extends React.Component {
     return (
       <div className="column">
         {this.state.currentDay ? (
-          <div className="ui link card" onClick={this.toggleCard}>
+          <div
+            className="ui card"
+            onMouseEnter={this.toggleCard}
+            onMouseLeave={this.toggleCard}
+            onClick={() =>
+              this.props.setCityWoeId(
+                this.props.city.woe_id,
+                this.props.city.name
+              )
+            }
+          >
             <div className="image">
               <img
                 alt={`current weather visual for ${this.props.city.name}, ${

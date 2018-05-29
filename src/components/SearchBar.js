@@ -28,17 +28,24 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="ui segment">
-        <div className="ui icon input fluid">
-          <input
-            type="text"
-            placeholder="Find City..."
-            onKeyPress={this.submitHandler}
-            onChange={this.inputHandler}
-            value={this.state.searchTerm}
-          />
-          <i className="search icon" />
+      <div className="ui grid">
+        <div className="four wide column" />
+        <div className="eight wide column">
+          <div className="ui huge category search">
+            <div className="ui icon input fluid">
+              <input
+                type="text"
+                className="prompt"
+                placeholder="Search City..."
+                onKeyPress={this.submitHandler}
+                onChange={this.inputHandler}
+                value={this.state.searchTerm}
+              />
+              <i className="search icon" />
+            </div>
+          </div>
         </div>
+        <div className="four wide column" />
       </div>
     );
   }

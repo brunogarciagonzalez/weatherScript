@@ -10,13 +10,27 @@ class CityForecastContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="ui block header">{this.props.cityName}</div>
-        <div className="ui five column grid">
-          {this.props.weatherData.map((day, index) => {
-            return <DayWeatherTile key={day.id} day={day} index={index} />;
-          })}
+      <div className="ui grid">
+        <div className="two wide column" />
+        <div className="twelve wide column">
+          <div className="ui segment">
+            <div className="ui grid">
+              <div className="four wide column" />
+              <div className="eight wide column">
+                <div className="ui block header">
+                  <h2 style={{ textAlign: "center" }}>{this.props.cityName}</h2>
+                </div>
+              </div>
+              <div className="four wide column" />
+            </div>
+            <div className="ui five column grid">
+              {this.props.weatherData.map((day, index) => {
+                return <DayWeatherTile key={day.id} day={day} index={index} />;
+              })}
+            </div>
+          </div>
         </div>
+        <div className="two wide column" />
       </div>
     );
   }

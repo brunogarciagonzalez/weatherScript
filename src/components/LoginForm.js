@@ -79,23 +79,25 @@ class LoginForm extends React.Component {
                 />
               </div>
             </div>
-            <div className="field">
-              <input
-                placeholder="Username"
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="field">
-              <input
-                placeholder="Password"
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
+            <div className="two fields">
+              <div className="field">
+                <input
+                  placeholder="Username"
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="field">
+                <input
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </div>
             </div>
             <Link
               className="ui submit button"

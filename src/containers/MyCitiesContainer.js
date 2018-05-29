@@ -9,13 +9,19 @@ class MyCitiesContainer extends React.Component {
   }
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, setCityWoeId } = this.props;
     // console.log(!!currentUser.cities);
     return (
       <div className="ui two column grid">
         {!!currentUser.cities
           ? currentUser.cities.map(city => {
-              return <CityTile key={city.id} city={city} />;
+              return (
+                <CityTile
+                  key={city.id}
+                  city={city}
+                  setCityWoeId={setCityWoeId}
+                />
+              );
             })
           : null}
       </div>

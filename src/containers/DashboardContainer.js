@@ -55,7 +55,10 @@ class DashboardContainer extends React.Component {
             results={this.state.searchResults}
           />
         ) : null}
-        <MyCitiesContainer currentUser={this.props.currentUser} />
+        <MyCitiesContainer
+          setCityWoeId={this.props.setCityWoeId}
+          currentUser={this.props.currentUser}
+        />
       </div>
     );
   }
