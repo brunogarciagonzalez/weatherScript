@@ -82,25 +82,41 @@ class CityPageContainer extends React.Component {
   render() {
     return (
       <div>
-        <CityForecastContainer
-          cityName={`${this.state.title}, ${this.state.parent}`}
-          weatherData={this.state.forecast}
-          loggedIn={this.props.loggedIn}
-          isUserCity={this.state.isUserCity}
-          removeCity={this.removeCity}
-          addCity={this.addCity}
-        />
-
         {this.state.loaded ? (
-          <div className="ui segment">
-            Current Time:{" "}
-            {`${this.state.allJson.time} (${this.state.allJson.timezone_name})`}
-            <br />
-            Sunrise: {this.state.allJson.sun_rise}
-            <br />
-            Sunset: {this.state.allJson.sun_set}
+          <div>
+            <CityForecastContainer
+              cityName={`${this.state.title}, ${this.state.parent}`}
+              weatherData={this.state.forecast}
+              loggedIn={this.props.loggedIn}
+              isUserCity={this.state.isUserCity}
+              removeCity={this.removeCity}
+              addCity={this.addCity}
+            />
+
+            {this.state.loaded ? (
+              <div className="ui segment">
+                Current Time:{" "}
+                {`${this.state.allJson.time} (${
+                  this.state.allJson.timezone_name
+                })`}
+                <br />
+                Sunrise: {this.state.allJson.sun_rise}
+                <br />
+                Sunset: {this.state.allJson.sun_set}
+              </div>
+            ) : null}
           </div>
-        ) : null}
+        ) : (
+          <div className="ui grid">
+            <div className="two wide column" />
+            <div className="twelve wide column">
+              <div className="ui segment">
+                <div className="ui active centered inline loader" />
+              </div>
+            </div>
+            <div className="two wide column" />
+          </div>
+        )}
       </div>
     );
   }
