@@ -71,13 +71,6 @@ class DayWeatherTile extends React.Component {
                 <br />
                 {`(Consensus: ${this.props.day.predictability}%)`}
                 <hr />
-                {this.props.index === 0 ? (
-                  <span>
-                    Current Temp:{" "}
-                    {this.celsiusConversion(this.props.day.the_temp)} °F
-                    <br />
-                  </span>
-                ) : null}
                 Hi / Low:{" "}
                 {`${this.celsiusConversion(
                   this.props.day.max_temp
