@@ -27,12 +27,36 @@ class DashboardContainer extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(json =>
+      .then(json => {
         this.setState({
           searchResults: json,
           lastSearchTerm: searchTerm
-        })
-      );
+        });
+        return json;
+      })
+      .then(json => {
+        // if json is object (not array) or if the length of the array is 1
+        if (Array.isArray(json)) {
+          // if one only
+          if (json.length === 1) {
+            // call this.props.setCityWoeId
+            this.props.setCityWoeId(json[0].woeid, json[0].title);
+          } else {
+            // could be none:
+            if (json.length === 0) {
+              console.log("no results", json);
+            } else {
+              console.log("multiple", json);
+            }
+          }
+        } else {
+          // only other possiblity is that the actual weather data gets sent here
+          // because city was matched in our db so it took another route in the
+          // backend
+          console.log("only one, in db", json);
+          this.props.setCityWoeId(json.woeid, json.title);
+        }
+      });
   };
 
   resultsShowHandler = () => {
