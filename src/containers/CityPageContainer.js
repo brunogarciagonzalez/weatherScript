@@ -31,7 +31,7 @@ class CityPageContainer extends React.Component {
       .then(r => r.json())
       .then(json => {
         console.log("json from API:", json);
-        let fiveDayForecast = json.consolidated_weather.slice(1);
+        let fiveDayForecast = json.consolidated_weather.slice(0, 5);
         this.setState({
           title: json.title,
           parent: json.parent.title,
