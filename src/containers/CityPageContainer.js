@@ -107,14 +107,8 @@ class CityPageContainer extends React.Component {
             ) : null}
           </div>
         ) : (
-          <div className="ui grid">
-            <div className="two wide column" />
-            <div className="twelve wide column">
-              <div className="ui segment">
-                <div className="ui active centered inline loader" />
-              </div>
-            </div>
-            <div className="two wide column" />
+          <div style={{ "padding-top": "100px" }}>
+            <div className="ui inverted active centered inline loader" />
           </div>
         )}
       </div>
