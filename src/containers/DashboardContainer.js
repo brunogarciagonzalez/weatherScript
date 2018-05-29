@@ -10,7 +10,8 @@ class DashboardContainer extends React.Component {
     this.state = {
       searchResults: [],
       lastSearchTerm: "",
-      searched: false
+      searched: false,
+      loaded: false
     };
   }
 
@@ -65,6 +66,12 @@ class DashboardContainer extends React.Component {
     });
   };
 
+  componentDidMount() {
+    window.setTimeout(() => {
+      this.setState({ loaded: true });
+    }, 3000);
+  }
+
   render() {
     return (
       <div>
@@ -80,10 +87,13 @@ class DashboardContainer extends React.Component {
             results={this.state.searchResults}
           />
         ) : null}
-        <MyCitiesContainer
-          setCityWoeId={this.props.setCityWoeId}
-          currentUser={this.props.currentUser}
-        />
+        {this.props.loggedIn ? (
+          <MyCitiesContainer
+            load={this.state.loaded}
+            setCityWoeId={this.props.setCityWoeId}
+            currentUser={this.props.currentUser}
+          />
+        ) : null}
       </div>
     );
   }

@@ -60,7 +60,7 @@ class LoginContainer extends React.Component {
             currentWeather={this.state.weatherData[0]}
           />
         ) : (
-          <div style={{ "padding-top": "100px" }}>
+          <div style={{ paddingTop: "100px" }}>
             <div className="ui inverted active centered inline loader" />
           </div>
         )}
