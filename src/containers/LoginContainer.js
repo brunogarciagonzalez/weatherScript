@@ -15,7 +15,8 @@ class LoginContainer extends React.Component {
         "Sydney",
         "Washington DC"
       ],
-      weatherData: []
+      weatherData: [],
+      loaded: false
     };
 
     //this state should hold tem woeIds to fetch for main page
@@ -38,7 +39,8 @@ class LoginContainer extends React.Component {
       .then(json =>
         this.setState({
           randomCityName: `${json.title}, ${json.parent.title}`,
-          weatherData: json.consolidated_weather.slice(0, 5)
+          weatherData: json.consolidated_weather.slice(0, 5),
+          loaded: true
         })
       );
   }
@@ -63,10 +65,16 @@ class LoginContainer extends React.Component {
           createUser={this.props.createUser}
           handleLogIn={this.props.handleLogIn}
         />
-        <CityForecastContainer
-          cityName={this.state.randomCityName}
-          weatherData={this.state.weatherData}
-        />
+        {this.state.loaded ? (
+          <CityForecastContainer
+            cityName={this.state.randomCityName}
+            weatherData={this.state.weatherData}
+          />
+        ) : (
+          <div style={{ "padding-top": "100px" }}>
+            <div className="ui inverted active centered inline loader" />
+          </div>
+        )}
       </div>
     );
   }
