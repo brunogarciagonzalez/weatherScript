@@ -1,7 +1,6 @@
 class CitiesController < ApplicationController
 
   def getWoeId
-    puts params
     @city_name = params[:city]
 
     # ================== _ 1 _ ==================
@@ -45,6 +44,7 @@ class CitiesController < ApplicationController
         city_find_result["woe_id"],
         false
       )
+      return
     else
       # construct search query
       # send query
@@ -63,7 +63,7 @@ class CitiesController < ApplicationController
       if json.length == 0
         # there were no results
 
-        render json: [], status: 200
+        render json: [], status: 200 and return
       elsif json.length == 1
         # persist in db
         # send to self.weatherData, with second argument of: true,
@@ -71,6 +71,7 @@ class CitiesController < ApplicationController
         the_city = json[0]
         City.create(name: the_city['title'], woe_id: the_city['woeid'])
         self.weatherData(the_city['woeid'], true)
+        return
       else
         # since more than one result,
         # need searchResults functionality to show up in front-end
@@ -87,7 +88,7 @@ class CitiesController < ApplicationController
         end
 
 
-        render json: json, status: 200
+        render json: json, status: 200 and return
       end
     end
 

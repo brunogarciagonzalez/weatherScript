@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
   };
 
   submitHandler = e => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && this.state.searchTerm !== "") {
       this.props.resultsShowHandler();
       this.props.handleResults(this.state.searchTerm);
 

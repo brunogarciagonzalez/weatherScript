@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import LoginContainer from "./containers/LoginContainer";
 import DashboardContainer from "./containers/DashboardContainer";
@@ -44,7 +44,7 @@ class App extends Component {
     );
   };
 
-  setCityWoeId = (woeId, city) => {
+  setCityWoeId = (woeId, cityName) => {
     let copy = [...this.state.cityWoeIds];
 
     if (!copy.includes(woeId)) {
@@ -60,19 +60,19 @@ class App extends Component {
         // not sure how else to do this other than to pushState twice and ask window to go back once
         window.history.pushState(
           {
-            title: `WeatherScript: ${city}`,
+            title: `WeatherScript: ${cityName}`,
             relative_url: `/cities/${woeId}`
           },
-          `WeatherScript: ${city}`,
+          `WeatherScript: ${cityName}`,
           `/cities/${woeId}`
         );
 
         window.history.pushState(
           {
-            title: `WeatherScript: ${city}`,
+            title: `WeatherScript: ${cityName}`,
             relative_url: `/cities/${woeId}`
           },
-          `WeatherScript: ${city}`,
+          `WeatherScript: ${cityName}`,
           `/cities/${woeId}`
         );
 
@@ -227,18 +227,21 @@ class App extends Component {
           <NavBar homeScreen={this.homeScreen} loggedIn={this.state.loggedIn} />
           <br />
           {this.state.loggedIn ? null : (
-            <Route
-              exact
-              path="/login"
-              render={() => (
-                <LoginContainer
-                  newUser={this.state.newUser}
-                  homeScreen={this.homeScreen}
-                  createUser={this.createUser}
-                  handleLogIn={this.handleLogIn}
-                />
-              )}
-            />
+            <div>
+              <Route exact path="/" render={() => <Redirect to="/login" />} />
+              <Route
+                exact
+                path="/login"
+                render={() => (
+                  <LoginContainer
+                    newUser={this.state.newUser}
+                    homeScreen={this.homeScreen}
+                    createUser={this.createUser}
+                    handleLogIn={this.handleLogIn}
+                  />
+                )}
+              />
+            </div>
           )}
           <Route
             exact

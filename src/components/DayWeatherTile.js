@@ -32,7 +32,6 @@ class DayWeatherTile extends React.Component {
   };
 
   render() {
-    // console.log("HERE", this.props.day);
     return (
       <div className="column">
         <div

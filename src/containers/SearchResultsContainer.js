@@ -29,13 +29,11 @@ class SearchResultsContainer extends React.Component {
           </div>
         ) : (
           <div>
-            {this.props.searched !== "" ? (
-              <div>
-                <strong>Searched: {this.props.searched}</strong>
-                <hr />
-              </div>
-            ) : null}
-            <div>No search results.</div>
+            <div>
+              <strong>Searched: {this.props.searched}</strong>
+              <hr />
+              <div>No search results.</div>
+            </div>
           </div>
         )}
       </div>
