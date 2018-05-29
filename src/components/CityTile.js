@@ -48,12 +48,12 @@ class CityTile extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="column">
         {this.state.loaded ? (
           <div className="column">
             {this.state.currentDay ? (
               <div
-                className="ui card"
+                className="ui fluid card"
                 onMouseEnter={this.toggleCard}
                 onMouseLeave={this.toggleCard}
                 onClick={() =>
