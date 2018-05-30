@@ -131,6 +131,7 @@ class CityPageContainer extends React.Component {
                 isUserCity={this.state.isUserCity}
                 removeCity={this.removeCity}
                 addCity={this.addCity}
+                allJson={this.state.allJson}
               />
             </div>
           ) : (
