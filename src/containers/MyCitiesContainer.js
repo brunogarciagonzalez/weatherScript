@@ -10,7 +10,6 @@ class MyCitiesContainer extends React.Component {
 
   render() {
     const { currentUser, setCityWoeId } = this.props;
-    // console.log(!!currentUser.cities);
     return (
       <div>
         <div

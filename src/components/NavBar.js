@@ -33,7 +33,10 @@ const NavBar = props => {
       )}
       {props.loggedIn ? (
         <div className="item" name="dashboard">
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard">
+            {props.currentUser.first_name}
+            {"'s Dashboard"}
+          </Link>
         </div>
       ) : null}
     </div>

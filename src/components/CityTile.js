@@ -53,7 +53,7 @@ class CityTile extends React.Component {
           <div className="column">
             {this.state.currentDay ? (
               <div
-                className="ui fluid card"
+                className="ui fluid card active"
                 onMouseEnter={this.toggleCard}
                 onMouseLeave={this.toggleCard}
                 onClick={() =>
