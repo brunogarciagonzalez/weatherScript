@@ -105,7 +105,7 @@ class CityPageContainer extends React.Component {
 
   render() {
     return (
-      <div className={this.state.rest_id ? "ui grid" : null}>
+      <div className="ui grid">
         <div className="one wide column" />
         <div className="two wide column">
           {!!this.state.rest_id ? (
@@ -119,7 +119,16 @@ class CityPageContainer extends React.Component {
                 style={{ height: 600 }}
               />
             </div>
-          ) : null}
+          ) : (
+            <div class="widget_wrap">
+              <iframe
+                src="https://www.zomato.com/widgets/res_search_widget.php?city_id=283&theme=red&sort=popularity"
+                style={{ height: 600 }}
+                border="0"
+                frameBorder="0"
+              />
+            </div>
+          )}
         </div>
         <div className="thirteen wide column">
           {this.state.loaded ? (
