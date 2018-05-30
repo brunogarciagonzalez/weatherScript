@@ -224,7 +224,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <NavBar homeScreen={this.homeScreen} loggedIn={this.state.loggedIn} />
+          <NavBar
+            homeScreen={this.homeScreen}
+            loggedIn={this.state.loggedIn}
+            currentUser={this.state.currentUser}
+          />
           <br />
           {this.state.loggedIn ? null : (
             <div>

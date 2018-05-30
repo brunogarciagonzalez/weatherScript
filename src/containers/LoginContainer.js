@@ -1,6 +1,7 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
 import CityForecastContainer from "./CityForecastContainer";
+import Noty from "noty";
 
 class LoginContainer extends React.Component {
   constructor() {
@@ -44,7 +45,7 @@ class LoginContainer extends React.Component {
   }
 
   render() {
-    console.log("WEATHER DATA", this.state.weatherData[0]);
+    // console.log("WEATHER DATA", this.state.weatherData[0]);
     return (
       <div>
         <LoginForm
