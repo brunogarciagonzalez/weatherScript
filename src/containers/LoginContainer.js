@@ -1,7 +1,6 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
 import CityForecastContainer from "./CityForecastContainer";
-import Noty from "noty";
 
 class LoginContainer extends React.Component {
   constructor() {

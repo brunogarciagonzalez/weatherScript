@@ -6,6 +6,7 @@ import DashboardContainer from "./containers/DashboardContainer";
 // import SearchResultsContainer from "./components/SearchResultsContainer";
 import CityPageContainer from "./containers/CityPageContainer";
 import "./App.css";
+import Noty from "noty";
 
 class App extends Component {
   constructor() {
@@ -34,6 +35,18 @@ class App extends Component {
   };
 
   handleLogIn = user => {
+    // fetch post to user_Controller
+    // therein, find user by username
+    // check password
+    // if both correct, return success
+
+    // if success
+    // no notification
+    //
+    // else
+    // notification
+    // clear username and password fields
+
     this.setState(
       {
         loggedIn: !this.state.loggedIn,
