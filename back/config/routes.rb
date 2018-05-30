@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   get '/weather', to: 'cities#weatherData'
   post '/woe-id', to: 'cities#getWoeId'
+  post '/woe-id-random-city', to: 'cities#getWoeIdRandomCity'
   post '/login-user', to: 'users#loginUser'
   post '/convert-woe', to: 'cities#alreadyHaveWoe'
   post '/convert-woe-plus-parent', to: 'cities#alreadyHaveWoePlusAddParent'

@@ -23,7 +23,7 @@ class LoginContainer extends React.Component {
   componentDidMount() {
     let num = Math.floor(Math.random() * this.state.randomCities.length);
     let cityName = this.state.randomCities[num];
-    fetch(`http://localhost:3000/woe-id`, {
+    fetch(`http://localhost:3000/woe-id-random-city`, {
       method: "POST",
       body: JSON.stringify({
         city: cityName
