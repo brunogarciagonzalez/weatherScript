@@ -86,7 +86,7 @@ class DashboardContainer extends React.Component {
             results={this.state.searchResults}
           />
         ) : null}
-        {this.props.loggedIn ? (
+        {this.props.loggedIn && this.props.currentUser.cities.length > 0 ? (
           <MyCitiesContainer
             load={this.state.loaded}
             setCityWoeId={this.props.setCityWoeId}
