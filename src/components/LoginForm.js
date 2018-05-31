@@ -81,8 +81,6 @@ class LoginForm extends React.Component {
 
           window.history.back();
         } else {
-          // clear fields
-          // alert
           this.setState(
             {
               firstName: "",
@@ -197,23 +195,5 @@ class LoginForm extends React.Component {
     );
   }
 }
-
-// <Card raised centered>
-//   <Form size={"big"}>
-//     <Form.Group widths="equal">
-//       <Form.Field control="input" placeholder="Username" />
-//     </Form.Group>
-//     <Form.Group widths="equal">
-//       <Form.Field
-//         control="input"
-//         type="password"
-//         placeholder="Password"
-//       />
-//     </Form.Group>
-//     <Button fluid type="submit">
-//       Login
-//     </Button>
-//   </Form>
-// </Card>
 
 export default LoginForm;

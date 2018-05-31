@@ -139,8 +139,5 @@ class CityTile extends React.Component {
     );
   }
 }
-// <div className="ui segment">
-//   <div className="ui active centered inline loader" />
-// </div>
 
 export default CityTile;

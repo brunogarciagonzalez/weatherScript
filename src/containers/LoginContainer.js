@@ -44,7 +44,6 @@ class LoginContainer extends React.Component {
   }
 
   render() {
-    // console.log("WEATHER DATA", this.state.weatherData[0]);
     return (
       <div>
         <LoginForm

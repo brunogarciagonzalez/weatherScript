@@ -35,18 +35,6 @@ class App extends Component {
   };
 
   handleLogIn = user => {
-    // fetch post to user_Controller
-    // therein, find user by username
-    // check password
-    // if both correct, return success
-
-    // if success
-    // no notification
-    //
-    // else
-    // notification
-    // clear username and password fields
-
     this.setState(
       {
         loggedIn: !this.state.loggedIn,
@@ -296,10 +284,4 @@ class App extends Component {
   }
 }
 
-// <Route
-//   exact
-//   path="/search-results"
-//   component={SearchResultsContainer}
-// />
-// <Route exact path="/city" component={CityPageContainer} />
 export default App;
