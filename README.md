@@ -3,6 +3,8 @@
 
 [![demo image](https://i.ytimg.com/vi/JaiPIwGPMKY/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBKfhVY1FGrWgy02yQi6UhJCz30XQ)](https://www.youtube.com/watch?v=JaiPIwGPMKY)
 
+(click image for demo)
+
 <div><p>
             This 1-week project is powered by Ruby on Rails (API), ReactJS, and Semantic UI. This was a partner-project with <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ryan-youngdale-508562112/">Ryan Youngdale</a> as we were learning ReactJS.
             </p>
